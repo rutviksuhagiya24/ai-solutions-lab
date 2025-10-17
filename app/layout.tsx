@@ -1,34 +1,31 @@
-import type { Metadata } from 'next'
-import { GeistSans } from 'geist/font/sans'
-import { GeistMono } from 'geist/font/mono'
-import { Analytics } from '@vercel/analytics/next'
-import './globals.css'
+import type { Metadata } from "next";
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
+// If you really use Vercel Analytics, keep this import. Otherwise remove it.
+import { Analytics } from "@vercel/analytics/next";
+import "./globals.css";
 
+// `geist/font` already defines CSS variables:
+//   --font-sans and --font-mono
 export const metadata: Metadata = {
-  title: 'AI RECEPTIONIST PLATFORM',
-  description: '',
-}
+  title: "AI RECEPTIONIST PLATFORM",
+  description: "",
+};
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <head>
-        <style>{`
-html {
-  font-family: ${GeistSans.style.fontFamily};
-  --font-sans: ${GeistSans.variable};
-  --font-mono: ${GeistMono.variable};
-}
-        `}</style>
-      </head>
-      <body>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${GeistSans.variable} ${GeistMono.variable}`}
+    >
+      <body className="antialiased">
         {children}
         <Analytics />
       </body>
     </html>
-  )
+  );
 }
+

@@ -43,7 +43,9 @@ jobs:
       # Install dependencies
       - name: Install dependencies
         run: npm ci
-
+      - name: Lint
+        run: npm run lint --if-present
+        continue-on-error: true
       # Run comprehensive test suite
       - name: Run test suite
         run: npm test

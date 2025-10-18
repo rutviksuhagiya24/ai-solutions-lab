@@ -27,7 +27,12 @@ jobs:
   test:
     name: Test Next.js Application
     runs-on: ubuntu-latest
-
+    env:
+      DATABASE_URL: "postgres://user:pass@localhost:5432/db"
+      GOOGLE_GENERATIVE_AI_API_KEY: "test-key"
+      NEXT_PUBLIC_APP_URL: "http://localhost"
+      NEXT_TELEMETRY_DISABLED: "1"
+      CI: true
     steps:
       # Checkout the repository
       - name: Checkout code
